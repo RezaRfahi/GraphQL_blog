@@ -76,6 +76,7 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
+                \App\GraphQL\Queries\UserQuery::class
             ],
             'mutation' => [
                 // ExampleMutation::class,
@@ -83,6 +84,7 @@ return [
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
+                \App\GraphQL\Types\UserType::class
             ],
 
             // Laravel HTTP middleware

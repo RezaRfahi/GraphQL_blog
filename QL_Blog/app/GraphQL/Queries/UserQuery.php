@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use Closure;
+use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL as QL;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
 
@@ -14,12 +16,12 @@ class UserQuery extends Query
 {
     protected $attributes = [
         'name' => 'user',
-        'description' => 'A query'
+        'description' => 'A query of User(s)'
     ];
 
     public function type(): Type
     {
-        return Type::listOf(Type::string());
+        return Type::nonNull(Type::listOf(Type::nonNull(QL::type('User'))));
     }
 
     public function args(): array
