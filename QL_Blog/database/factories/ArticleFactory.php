@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(4),
+            'body' => $this->faker->text(),
+            'user_id' => User::all()->random()->id,
+            'like_count' => rand(0,1000)
         ];
     }
 }
