@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
+use App\Models\User;
 use Closure;
-use GraphQL\GraphQL;
+use GraphQL\Error\Error;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL as QL;
@@ -21,13 +22,16 @@ class UserQuery extends Query
 
     public function type(): Type
     {
-        return Type::nonNull(Type::listOf(Type::nonNull(QL::type('User'))));
+        return QL::type('User');
     }
 
     public function args(): array
     {
         return [
-
+            'id' => [
+                'name' => 'id',
+                'type' => Type::nonNull(Type::int()),
+            ],
         ];
     }
 
@@ -37,9 +41,9 @@ class UserQuery extends Query
         $fields = $getSelectFields();
         $select = $fields->getSelect();
         $with = $fields->getRelations();
-
-        return [
-            'The user works',
-        ];
+        $user=User::findOr($args['id'], function (){
+            return new Error('User not found!');
+        });
+        return $user;
     }
 }
