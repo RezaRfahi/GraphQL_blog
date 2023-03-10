@@ -76,7 +76,8 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
-                \App\GraphQL\Queries\UserQuery::class
+                \App\GraphQL\Queries\UserQuery::class,
+                \App\GraphQL\Queries\AllUserQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
