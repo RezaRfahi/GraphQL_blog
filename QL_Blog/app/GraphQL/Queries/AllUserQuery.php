@@ -27,7 +27,14 @@ class AllUserQuery extends Query
     public function args(): array
     {
         return [
-
+            'limit' => [
+                'name' => 'limit',
+                'type' => Type::int()
+            ],
+            'page' =>  [
+                'name' => 'page',
+                'type' => Type::int()
+            ],
         ];
     }
 
@@ -37,8 +44,9 @@ class AllUserQuery extends Query
         $fields = $getSelectFields();
         $select = $fields->getSelect();
         $with = $fields->getRelations();
+        $limit = $args['limit'] ?? 10;
+        $page = $args['page'] ?? 1;
 
-
-        return User::all();
+        return User::paginate($limit, '*', 'page', $page);
     }
 }
