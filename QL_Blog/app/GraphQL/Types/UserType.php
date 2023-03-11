@@ -35,6 +35,11 @@ class UserType extends GraphQLType
             'isAdmin' => [
                 'type' => Type::boolean(),
                 'description' => 'User Level',
+            ],
+
+            'created_at' =>[
+                'type' => Type::string(),
+                'description' => 'create Account date'
             ]
         ];
     }

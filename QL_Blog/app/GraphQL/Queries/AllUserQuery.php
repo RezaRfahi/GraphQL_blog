@@ -21,7 +21,7 @@ class AllUserQuery extends Query
 
     public function type(): Type
     {
-        return Type::listOf(QL::type('User'));
+        return QL::paginate('User');
     }
 
     public function args(): array
@@ -41,12 +41,12 @@ class AllUserQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         /** @var SelectFields $fields */
-        $fields = $getSelectFields();
-        $select = $fields->getSelect();
-        $with = $fields->getRelations();
+//        $fields = $getSelectFields();
+//        $select = $fields->getSelect();
+//        $with = $fields->getRelations();
         $limit = $args['limit'] ?? 10;
         $page = $args['page'] ?? 1;
 
-        return User::paginate($limit, '*', 'page', $page);
+        return User::paginate($limit, ['*'], 'page', $page);
     }
 }
