@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 
@@ -33,6 +34,14 @@ class ArticleType extends GraphQLType
             'like_count' => [
                 'type' => Type::int(),
                 'description' => 'count of likes'
+            ],
+            'comments' => [
+                'type' => Type::listOf(GraphQL::type('Comment')),
+                'description' => 'the Comments belongs to article'
+            ],
+            'user' =>[
+                'type' => GraphQL::type('User'),
+                'description' => 'Commenter user'
             ]
         ];
     }
