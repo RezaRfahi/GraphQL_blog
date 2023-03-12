@@ -79,6 +79,7 @@ return [
                 \App\GraphQL\Queries\UserQuery::class,
                 \App\GraphQL\Queries\AllUserQuery::class,
                 \App\GraphQL\Queries\AllArticleQuery::class,
+                \App\GraphQL\Queries\ArticleQuery::class
             ],
             'mutation' => [
                 // ExampleMutation::class,

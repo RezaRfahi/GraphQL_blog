@@ -39,7 +39,7 @@ class ArticleType extends GraphQLType
             'comments' => [
                 'type' => Type::listOf(GraphQL::type('Comment')),
                 'description' => 'the Comments belongs to article',
-                
+
                 // for showing only approved comments
                 'resolve' => function ($data) {
                     return $data->comments()->where('approval', true)->get();
