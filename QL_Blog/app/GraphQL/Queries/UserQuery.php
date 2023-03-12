@@ -41,9 +41,9 @@ class UserQuery extends Query
         $fields = $getSelectFields();
         $select = $fields->getSelect();
         $with = $fields->getRelations();
-        $user=User::findOr($args['id'], function (){
+
+        return User::findOr($args['id'], function (){
             return new Error('User not found!');
         });
-        return $user;
     }
 }

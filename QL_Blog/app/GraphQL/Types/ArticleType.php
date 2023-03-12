@@ -20,6 +20,10 @@ class ArticleType extends GraphQLType
     public function fields(): array
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'the article identity'
+            ],
             'title' => [
                 'type' => Type::string(),
                 'description' => 'the title of article'
