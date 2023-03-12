@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
+use App\Models\Comment;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
@@ -37,7 +38,12 @@ class ArticleType extends GraphQLType
             ],
             'comments' => [
                 'type' => Type::listOf(GraphQL::type('Comment')),
-                'description' => 'the Comments belongs to article'
+                'description' => 'the Comments belongs to article',
+                
+                // for showing only approved comments
+                'resolve' => function ($data) {
+                    return $data->comments()->where('approval', true)->get();
+                }
             ],
             'user' =>[
                 'type' => GraphQL::type('User'),
