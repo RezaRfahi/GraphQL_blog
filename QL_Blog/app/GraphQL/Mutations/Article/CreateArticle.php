@@ -28,13 +28,21 @@ class CreateArticle extends Mutation
     {
         return [
             'title' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The title of article'
             ],
             'body' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The context of article'
             ]
+        ];
+    }
+
+    protected function rules(array $args = []): array
+    {
+        return [
+            'title' => ['required' ,'string', 'max:60'],
+            'body' => ['required']
         ];
     }
 

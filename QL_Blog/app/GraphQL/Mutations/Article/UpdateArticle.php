@@ -50,7 +50,7 @@ class UpdateArticle extends Mutation
     protected function rules(array $args = []): array
     {
         return [
-            'title' => ['string','max:60'],
+            'title' => ['string', 'max:60'],
             'like_count' => ['integer']
         ];
     }
