@@ -83,6 +83,7 @@ return [
             ],
             'mutation' => [
                 \App\GraphQL\Mutations\Article\CreateArticle::class,
+                \App\GraphQL\Mutations\Article\UpdateArticle::class
                 // ExampleMutation::class,
             ],
             // The types only available in this schema
