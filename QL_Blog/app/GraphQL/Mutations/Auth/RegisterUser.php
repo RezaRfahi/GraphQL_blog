@@ -41,19 +41,24 @@ class RegisterUser extends Mutation
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'the password of User'
             ],
-            'password_confirm' => [
+            'password_confirmation' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'password confirmation'
             ]
         ];
     }
 
+    protected function rules(array $args = []): array
+    {
+        return [
+          'name' => ['required', 'min:3', 'max:16'],
+          'email' => ['required', 'email', 'unique:users'],
+          'password' => ['required', 'min:8', 'max:32', 'confirmed']
+        ];
+    }
+
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (!$args['password'] == $args['password_confirm'])
-        {
-            throw new Error('password and confirm are not equal');
-        }
             return User::create([
                 'name' => $args['name'],
                 'email' => $args['email'],
