@@ -6,8 +6,10 @@ namespace App\GraphQL\Mutations\Auth;
 
 use App\Models\User;
 use Closure;
+use GraphQL\Error\Error;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Facades\Hash;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
@@ -48,6 +50,14 @@ class RegisterUser extends Mutation
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        dd($args);
+        if (!$args['password'] == $args['password_confirm'])
+        {
+            throw new Error('password and confirm are not equal');
+        }
+            return User::create([
+                'name' => $args['name'],
+                'email' => $args['email'],
+                'password' => Hash::make($args['password'])
+            ]);
     }
 }
