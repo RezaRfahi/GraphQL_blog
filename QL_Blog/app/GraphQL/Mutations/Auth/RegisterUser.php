@@ -48,6 +48,6 @@ class RegisterUser extends Mutation
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        //
+        dd($args);
     }
 }
