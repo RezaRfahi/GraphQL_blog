@@ -23,7 +23,7 @@ class RegisterUser extends Mutation
 
     public function type(): Type
     {
-        return GraphQL::type('User');
+        return Type::listOf(Type::string());
     }
 
     public function args(): array
@@ -59,10 +59,18 @@ class RegisterUser extends Mutation
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-            return User::create([
+            $user = User::create([
                 'name' => $args['name'],
                 'email' => $args['email'],
                 'password' => Hash::make($args['password'])
             ]);
+
+            $token = $user->createToken()->accessToken;
+
+            return [
+                'user' => $user,
+                'token' => $token
+            ];
+
     }
 }
