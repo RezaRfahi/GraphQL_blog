@@ -28,19 +28,19 @@ class RegisterUser extends Mutation
     {
         return [
             'name' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'the Name of user'
             ],
             'email' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'the email of user'
             ],
             'password' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'the password of User'
             ],
             'password_confirm' => [
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'password confirmation'
             ]
         ];
