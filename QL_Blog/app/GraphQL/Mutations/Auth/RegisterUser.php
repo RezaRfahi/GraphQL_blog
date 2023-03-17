@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations\Auth;
 
+use App\Models\User;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -36,16 +37,17 @@ class RegisterUser extends Mutation
             ],
             'password' => [
                 'type' => Type::string(),
+                'description' => 'the password of User'
+            ],
+            'password_confirm' => [
+                'type' => Type::string(),
+                'description' => 'password confirmation'
             ]
         ];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        $fields = $getSelectFields();
-        $select = $fields->getSelect();
-        $with = $fields->getRelations();
-
-        return [];
+        //
     }
 }
