@@ -85,8 +85,6 @@ return [
                 \App\GraphQL\Mutations\Article\CreateArticle::class,
                 \App\GraphQL\Mutations\Article\UpdateArticle::class,
                 \App\GraphQL\Mutations\Article\DeleteArticle::class,
-                \App\GraphQL\Mutations\Auth\RegisterUser::class,
-                \App\GraphQL\Mutations\Auth\LoginUser::class
                 // ExampleMutation::class,
             ],
             // The types only available in this schema
