@@ -36,7 +36,10 @@ class UserType extends GraphQLType
                 'type' => Type::boolean(),
                 'description' => 'User Level',
             ],
-
+            'remember_token' => [
+                'type' => Type::string(),
+                'description' => 'token for JWT Authentication'
+            ],
             'created_at' =>[
                 'type' => Type::string(),
                 'description' => 'create Account date'
