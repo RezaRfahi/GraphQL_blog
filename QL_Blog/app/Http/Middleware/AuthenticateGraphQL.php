@@ -18,7 +18,7 @@ class AuthenticateGraphQL
         if (!auth()->guard('api')->check()) {
             abort(401, 'Unauthenticated.');
         }
-        
+
         return $next($request);
     }
 }
