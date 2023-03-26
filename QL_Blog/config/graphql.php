@@ -85,6 +85,7 @@ return [
                 \App\GraphQL\Mutations\Article\CreateArticle::class,
                 \App\GraphQL\Mutations\Article\UpdateArticle::class,
                 \App\GraphQL\Mutations\Article\DeleteArticle::class,
+                App\GraphQL\Mutations\Auth\RegisterUser::class
                 // ExampleMutation::class,
             ],
             // The types only available in this schema
@@ -98,7 +99,7 @@ return [
             // Laravel HTTP middleware
             'middleware' => [
 //                \App\Http\Middleware\Authenticate::class,
-            \App\Http\Middleware\AuthenticateGraphQL::class
+//            \App\Http\Middleware\AuthenticateGraphQL::class
             ],
 
             // Which HTTP methods to support; must be given in UPPERCASE!
