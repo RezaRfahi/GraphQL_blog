@@ -99,7 +99,7 @@ return [
 
             // Laravel HTTP middleware
             'middleware' => [
-                \App\Http\Middleware\Authenticate::class,
+//                \App\Http\Middleware\Authenticate::class,
 //            \App\Http\Middleware\AuthenticateGraphQL::class
             ],
 
