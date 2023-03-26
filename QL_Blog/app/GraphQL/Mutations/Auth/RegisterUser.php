@@ -9,6 +9,7 @@ use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 
@@ -60,7 +61,8 @@ class RegisterUser extends Mutation
         $user = User::create([
             'name' => $args['name'],
             'email' => $args['email'],
-            'password' => Hash::make($args['password'])
+            'password' => Hash::make($args['password']),
+            'remember_token'=> Str::random(32)
         ]);
         return $user ;
     }

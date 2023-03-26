@@ -53,7 +53,7 @@ class LoginUser extends Mutation
             throw new Error('email or password is not correct');
         }
         $user = Auth::user();
-        $user->remember_token = Str::random(30);
+        $user->remember_token = Str::random(32);
         $user->save();
         return $user;
     }
